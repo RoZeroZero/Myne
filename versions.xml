@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
-<Cosmo>
-  <NAME>Cosmo 1.12.2</NAME>
+<PACK>
+  
+  <NAME>
+    Cosmo 1.12.2
   <DESC>Description Cosmo</DESC>
   <URL>666</URL>
-</Cosmo>
+    </NAME>
+  
+  <NAME>
+    Delta 1.12.2
+  <DESC>Description Delta</DESC>
+  <URL>777</URL>
+    </NAME>
+  
+</PACK>
