@@ -95,11 +95,9 @@ def create_theme_dark() -> Union[str, int]:
             dpg.add_theme_color(dpg.mvNodeCol_BoxSelectorOutline, (61, 133, 224, 150), category=dpg.mvThemeCat_Nodes)
             dpg.add_theme_color(dpg.mvNodeCol_GridBackground, (40, 40, 50, 200), category=dpg.mvThemeCat_Nodes)
             dpg.add_theme_color(dpg.mvNodeCol_GridLine, (200, 200, 200, 40), category=dpg.mvThemeCat_Nodes)
-
-    return theme_id
+    dpg.bind_theme(theme_id)
 
 def create_font():
     with dpg.font_registry():
-        font = dpg.add_font("assets/minecraft.ttf", 20)
-
-    return font
+        dpg.add_font("assets/minecraft.ttf", 20, id="default_font")
+        dpg.bind_font("default_font")
