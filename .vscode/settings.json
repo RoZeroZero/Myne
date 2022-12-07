@@ -1,10 +1,29 @@
 {
     "cSpell.words": [
+        "переписать",
         "floatlayout",
         "gridlayout",
         "imgui",
         "Myne",
         "valign"
     ],
-    "terminal.explorerKind": "external"
+    "terminal.explorerKind": "external",
+    "cSpell.ignoreWords": [
+        "возвращением",
+        "выбирается",
+        "вызове",
+        "индекс",
+        "индекса",
+        "номер",
+        "описание",
+        "описания",
+        "поиском",
+        "работает",
+        "совпадения",
+        "списка",
+        "списке",
+        "только",
+        "указывает",
+        "функции"
+    ]
 }
