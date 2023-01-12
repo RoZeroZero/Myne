@@ -124,8 +124,9 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
+.zip
 # Pyre type checker
 .pyre/
 
 .xml
+Cosmo_1.12.2.zip
