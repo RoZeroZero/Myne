@@ -1,9 +1,10 @@
 from os import abort
+import modules.launcher as launch
 import dearpygui.dearpygui as dpg
 import modules.get_versions as get
 import modules.dark_theme as dark_theme
 
-def init():
+def init2():
     dpg.create_context()
 
     dark_theme.create_theme_dark()
@@ -37,4 +38,5 @@ def init():
     dpg.destroy_context()
 
 if __name__ == "__main__":
-    init()
+    # init2()
+    launch()

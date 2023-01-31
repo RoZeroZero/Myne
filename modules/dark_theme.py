@@ -99,5 +99,5 @@ def create_theme_dark() -> Union[str, int]:
 
 def create_font():
     with dpg.font_registry():
-        dpg.add_font("assets/minecraft.ttf", 20, id="default_font")
+        dpg.add_font("assets/minecraft.ttf", 15, id="default_font")
         dpg.bind_font("default_font")

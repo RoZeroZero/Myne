@@ -4,7 +4,7 @@ name = []
 uri = []
 desc = []
 
-def versions():#переписать
+def versions():
     if len(name)==0:
         urllib.request.urlretrieve("https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.txt", 'versions.txt')
         with open("versions.txt") as f:
