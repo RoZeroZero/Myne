@@ -1,42 +1,25 @@
-from os import abort
-import modules.launcher as launch
-import dearpygui.dearpygui as dpg
 import modules.get_versions as get
-import modules.dark_theme as dark_theme
+from tkinter import *
+from tkinter import ttk
 
-def init2():
-    dpg.create_context()
 
-    dark_theme.create_theme_dark()
-    dark_theme.create_font()
+ui=Tk()
 
-    def onclick_quit():
-        abort()
+def click(event):
+    # button1.configure(bg="black")
+    pass
 
-    def onclick_install():
-        get.pack(get.versions()[0].index(dpg.get_value("listbox")))
 
-    def onclick_choose_item(sender, app_data, user_data):#работает только так
-        dpg.set_value(item="description", value=get.versions()[2][(get.versions()[0].index(app_data))])
-        #при вызове функции описание выбирается поиском app_data из списка name,
-        #с возвращением индекса совпадения, индекс указывает номер описания в списке description
+ui.title("Myne")
+ui.resizable(False, False)
+ui.iconbitmap(default="assets/myne.ico")
+ui.attributes("-fullscreen", False)
 
-    with dpg.window(tag="main"):
-        vw, vh = 800, 290
-        dpg.add_text("Welcome to Myne Loader for Minecraft")
-        dpg.add_button(label="Exit", callback=onclick_quit, pos=[vw-70,vh-65])
-        dpg.add_button(label="Install", callback=onclick_install, pos=[vw-170,vh-65])
-        dpg.add_listbox(width=300, num_items=7, items=get.versions()[0], callback=onclick_choose_item, tag="listbox")
-        dpg.add_text(default_value=get.versions()[2][0], wrap=vw-350, pos=[320,40], tag="description")
-        dpg.add_input_text(pos=[8,vh-65], width=vw-187, tag="path")
 
-    dpg.create_viewport(title='Myne', width=vw, height=vh, resizable=False, large_icon="assets/myne.ico")
-    dpg.setup_dearpygui()
-    dpg.show_viewport()
-    dpg.set_primary_window("main", True)
-    dpg.start_dearpygui()
-    dpg.destroy_context()
+label1 = Label(ui, text="Myne Minecraft Modpack Loader", font=("assets/minecraft.ttf", 20))  
+label1.pack(anchor=NW, padx=5, pady=5)  
+button1 = ttk.Button(ui, text="Не нажимать!")  
+button1.pack(anchor=SE, padx=5, pady=5)
+button1.bind("<ButtonPress>", click)  
 
-if __name__ == "__main__":
-    # init2()
-    launch()
+ui.mainloop()

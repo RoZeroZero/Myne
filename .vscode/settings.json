@@ -5,6 +5,8 @@
         "gridlayout",
         "imgui",
         "Myne",
+        "padx",
+        "pady",
         "valign"
     ],
     "terminal.explorerKind": "external",
