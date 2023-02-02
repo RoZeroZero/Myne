@@ -1,21 +1,16 @@
 from tkinter import *
 from main import *
-
+from config import *
 
 ui=Tk()
-
-x_l = 5
-x_r = 165
-x_rd = 325
 
 
 ui.title("Myne")
 ui.resizable(False, False)
-ui.geometry("445x270")
-ui.iconbitmap(default="assets/myne.ico")
+ui.geometry(xy)
+ui.iconbitmap(default=ico)
 ui.attributes("-fullscreen", False)
 
-font="Minecraft Rus"
 
 label_versions = Label(ui, text="Versions", font=(font, 10))  
 label_versions.place(x=x_l, y=5)

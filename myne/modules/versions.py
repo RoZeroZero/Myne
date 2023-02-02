@@ -1,20 +1,40 @@
 import urllib.request
+from progressbar import *
+from config import *
+
+
 
 name = []
 uri = []
 desc = []
-class get:
-    def update(self):
-        try:
-            urllib.request.urlretrieve("https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.txt", 'versions.txt')
-            with open("versions.txt") as f:
-                for line in f:
-                    name.append(line.split("@")[0])
-                    uri.append(line.split("@")[1])
-                    desc.append(line.split("@")[2])
-        except:
-            pass
-        return name, uri, desc
 
-def pack(id):
-    urllib.request.urlretrieve("https://www.dropbox.com/s/" + uri[id] + "/" + name[id] + ".zip?dl=1", name[id] + ".zip")
+
+class get:
+
+
+    def check(self):
+        try:
+            f = open(version_id_path, "r")
+        except Exception as file_error:
+            print(file_error)
+            return False
+        f.close()
+        return True
+
+    def update(self, block_num, block_size, total_size):
+        print("download")
+        print(block_num)
+        print(block_size)
+        print(total_size)
+        if block_num * block_size < total_size:
+            print(block_num * block_size)
+        else: print("vse")
+
+    def __call__(self, block_num, block_size, total_size):
+        get.update(self, block_num, block_size, total_size)
+
+
+urllib.request.urlretrieve(version_id_url, 'versions.txt', get())
+
+# urllib.request.urlretrieve("https://www.dropbox.com/s/" + uri[id] + "/" + name[id] + ".zip?dl=1", name[id] + ".zip")
+
