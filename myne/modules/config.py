@@ -1,4 +1,4 @@
-version_id_url = "https://raw.githubusercontent.com/RoZeroZero/ModpackLoader/master/versions.txt"
+version_id_url = "https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.db"
 # version_id_url = "https://www.dropbox.com/s/2my8gi447rd10pg/Cosmo_1.12.2.zip?dl=1"
 
 
