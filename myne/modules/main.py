@@ -3,6 +3,7 @@ from config import *
 
 
 def on_start():
+    check()
     if check()==False:
         print("Download Error")
     else:
@@ -11,7 +12,7 @@ def on_start():
 
 
 def check():
-    if os.path.exists("versions.txt"):
+    if os.path.exists("versions.db"):
         return True
     else:
         update()
@@ -20,7 +21,7 @@ def check():
 
 def update():
     r = requests.get(version_id_url) 
-    with open('versions.txt', 'wb') as f: 
+    with open('versions.db', 'wb') as f: 
         f.write(r.content)
 
 
