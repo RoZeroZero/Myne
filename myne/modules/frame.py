@@ -48,4 +48,5 @@ button_work.place(x=325, y=235, height=19, width=100)
 button_work.bind("<ButtonPress>", button_work_click)
 
 ui.config(menu=menu_settings)
+on_start()
 ui.mainloop()
