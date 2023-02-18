@@ -36,6 +36,7 @@ entry_nickname.place(x=x_r, y=205)
 
 entry_password = Entry()
 entry_password.place(x=x_rd, y=205, width=100)
+entry_password.insert(0, 'WIP')
 
 entry_path = Entry(font=(font, 8))
 entry_path.place(x=x_r, y=235, width=145, height=19)

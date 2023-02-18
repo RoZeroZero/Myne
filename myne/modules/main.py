@@ -45,7 +45,7 @@ def read_description(index):
         cursor = connection.cursor()
         cursor.execute('SELECT description FROM versions')
         r = cursor.fetchall()
-        frame.text_description.replace('1.0', 'end', r[index[0]][0])
+        frame.text_description.replace('1.0', 'end', r[index][0])
         connection.close()
     except Exception as e:
         print(e)
@@ -54,18 +54,18 @@ def read_description(index):
 def check_version(index):
     if os.path.exists('myne\\minecraft') == False:
         os.mkdir('myne\\minecraft')
-    if os.path.exists('myne\\minecraft\\' + names[index[0]][0]):
+    if os.path.exists('myne\\minecraft\\' + names[index][0]):
         return True
     else: 
         return False
-    
+
 
 def update_version():
     pass
 
 
 def button_work_click():
-	print('work')
+    pass
 
 
 def menu_settings_click():
@@ -73,8 +73,11 @@ def menu_settings_click():
 
 
 def listbox_versions_click(event):
-    index = frame.listbox_versions.curselection()
-    read_description(index)
-    check_version(index)
-    frame.button_work['text'] = 'Download'
+    frame.button_work['text'] = 'Choose'
     frame.button_work['state'] = ['active']
+    try:
+        index = frame.listbox_versions.curselection()[0]
+        read_description(index)
+        frame.button_work['text'] = 'Play' if check_version(index) else 'Download'
+    except Exception:
+        frame.button_work['state'] = ['disabled']

@@ -3,7 +3,7 @@ import os
 
 version_id_url = 'https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.db'
 db = 'versions.db'
-minecraft_path = os.getenv('APPDATA') + '\\myne'
+minecraft_path = os.path.abspath(os.curdir)
 
 names = []
 
@@ -14,7 +14,7 @@ xy = '495x270' #+50x0
 
 ico = 'assets/myne.ico'
 
-font='Minecraft Rus'
+font='Segoe UI'
 
 # def update():
 #         with open('versions.zip', 'wb') as f:
@@ -32,3 +32,17 @@ font='Minecraft Rus'
 #                     f.write(data)
 #                     percent = int(100 * dl / total_length)
 #                 return True
+
+# def listbox_versions_click(event):
+#     frame.button_work['text'] = 'Choose'
+#     frame.button_work['state'] = ['active']
+#     cs = frame.listbox_versions.curselection()
+#     try:
+#         if cs[0]>=0: 
+#             index = cs[0]frame.listbox_versions.curselection()
+#             read_description(index)
+#             if check_version(index)==True:
+#                 frame.button_work['text'] = 'Play'
+#             else: frame.button_work['text'] = 'Download'
+#     except Exception:
+#         frame.button_work['state'] = ['disabled']
