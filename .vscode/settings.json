@@ -20,5 +20,6 @@
         "только",
         "указывает",
         "функции"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }
