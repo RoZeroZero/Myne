@@ -51,17 +51,31 @@ def read_description(index):
         print(e)
 
 
-def check_version(index):
+def check_version(index, state):
     if os.path.exists('myne\\minecraft') == False:
         os.mkdir('myne\\minecraft')
-    if os.path.exists('myne\\minecraft\\' + names[index][0]):
+    if os.path.exists('myne\\minecraft\\' + names[index][0]) and state==False:
         return True
     else: 
         return False
 
 
 def update_version():
-    pass
+    with open('versions.zip', 'wb') as f:
+        response = requests.get(version_id_url, stream=True)
+        total_length = response.headers.get('content-length')
+
+        if total_length is None: # no content length header
+            f.write(response.content)
+            return False
+        else:
+            dl = 0
+            total_length = int(total_length)
+            for data in response.iter_content(chunk_size=int(total_length/100)):
+                dl += len(data)
+                f.write(data)
+                percent = int(100 * dl / total_length)
+            return True
 
 
 def button_work_click():
@@ -78,6 +92,6 @@ def listbox_versions_click(event):
     try:
         index = frame.listbox_versions.curselection()[0]
         read_description(index)
-        frame.button_work['text'] = 'Play' if check_version(index) else 'Download'
+        frame.button_work['text'] = 'Play' if check_version(index, False) else 'Download'
     except Exception:
         frame.button_work['state'] = ['disabled']
