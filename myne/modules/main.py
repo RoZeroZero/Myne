@@ -44,11 +44,11 @@ def read_description(index):
         connection = sqlite3.connect(db)
         cursor = connection.cursor()
         cursor.execute('SELECT description FROM versions')
-        r = cursor.fetchall()
-        frame.text_description.replace('1.0', 'end', r[index][0])
+        desc = cursor.fetchall()
+        frame.text_description.replace('1.0', 'end', desc[index][0])
         connection.close()
     except Exception as e:
-        print(e)
+        print(e, ',read description')
 
 
 def check_version(index, state):
@@ -61,7 +61,8 @@ def check_version(index, state):
 
 
 def update_version():
-    with open('versions.zip', 'wb') as f:
+    index = frame.listbox_versions.curselection()[0]
+    with open('myne\\minecraft\\' + names[index][0] + '.zip', 'wb') as f:
         response = requests.get(version_id_url, stream=True)
         total_length = response.headers.get('content-length')
 
@@ -69,17 +70,19 @@ def update_version():
             f.write(response.content)
             return False
         else:
+            frame.progressbar.place(x=x_r, y=235, width=145, height=19)
             dl = 0
             total_length = int(total_length)
             for data in response.iter_content(chunk_size=int(total_length/100)):
                 dl += len(data)
                 f.write(data)
-                percent = int(100 * dl / total_length)
+                frame.progressbar['value'] = int(100 * dl / total_length)
+            frame.progressbar.place_forget()
             return True
 
 
 def button_work_click():
-    pass
+    update_version()
 
 
 def menu_settings_click():
@@ -93,5 +96,6 @@ def listbox_versions_click(event):
         index = frame.listbox_versions.curselection()[0]
         read_description(index)
         frame.button_work['text'] = 'Play' if check_version(index, False) else 'Download'
-    except Exception:
+    except Exception as e:
         frame.button_work['state'] = ['disabled']
+        print(e, ',version click, its normal work')
