@@ -132,3 +132,4 @@ dmypy.json
 .xml
 .zip
 ui.png
+!minecraft/*.py

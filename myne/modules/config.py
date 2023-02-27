@@ -1,8 +1,7 @@
 import os
 
 
-version_id_url = 'https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.db'
-# version_pack_url = 
+v_url = 'https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.db' # version (name, version, description, short url) url
 db = 'versions.db'
 minecraft_path = os.path.abspath(os.curdir)
 

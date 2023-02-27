@@ -1,3 +1,4 @@
+from zipfile import ZipFile
 import frame, os, requests, sqlite3
 from threading import Thread
 from config import *
@@ -16,7 +17,7 @@ def update_database():
         return True
     else:
         try:
-            r = requests.get(version_id_url) 
+            r = requests.get(v_url) 
             f = open(db, 'wb') 
             f.write(r.content)
             return True
@@ -89,7 +90,9 @@ def update_version():
                 f.write(data)
                 frame.progressbar['value'] += 1
             frame.progressbar.place_forget()
-            return True
+    with ZipFile('myne\\minecraft\\' + names[index][0] + '.zip', 'r') as z:
+        z.extractall(path='myne\\minecraft')
+    os.remove('myne\\minecraft\\' + names[index][0] + '.zip') #TODO export to config current path
 
 
 def button_work_click():
