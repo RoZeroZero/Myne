@@ -1,6 +1,7 @@
 import frame, os, requests, sqlite3
+from threading import Thread
 from config import *
-
+# index - the selected line with names in listbox
 
 def on_start():
     if update_database()!=True:
@@ -48,7 +49,20 @@ def read_description(index):
         frame.text_description.replace('1.0', 'end', desc[index][0])
         connection.close()
     except Exception as e:
-        print(e, ',read description')
+        print(e, '(read description)')
+
+
+def read_url(index):
+    try:
+        connection = sqlite3.connect(db)
+        cursor = connection.cursor()
+        cursor.execute('SELECT url FROM versions')
+        url = str(cursor.fetchall()[index][0])
+        connection.close()
+        return url
+    except Exception as e:
+        print(e, '(read url)')
+
 
 
 def check_version(index, state):
@@ -58,32 +72,33 @@ def check_version(index, state):
         return True
     else: 
         return False
-
+    
 
 def update_version():
+    frame.progressbar.place(x=x_r, y=235, width=145, height=19)
     index = frame.listbox_versions.curselection()[0]
     with open('myne\\minecraft\\' + names[index][0] + '.zip', 'wb') as f:
-        response = requests.get(version_id_url, stream=True)
+        response = requests.get(f'https://www.dropbox.com/s/{read_url(index)}/{names[index][0]}.zip?dl=1', stream=True)
         total_length = response.headers.get('content-length')
-
-        if total_length is None: # no content length header
+        if total_length is None:
             f.write(response.content)
             return False
-        else:
-            frame.progressbar.place(x=x_r, y=235, width=145, height=19)
-            dl = 0
+        else:           
             total_length = int(total_length)
             for data in response.iter_content(chunk_size=int(total_length/100)):
-                dl += len(data)
                 f.write(data)
-                frame.progressbar['value'] = int(100 * dl / total_length)
+                frame.progressbar['value'] += 1
             frame.progressbar.place_forget()
             return True
 
 
 def button_work_click():
-    update_version()
-
+    thread_update = Thread(target=update_version)
+    try:
+        thread_update.start()
+    except Exception as e:
+        print(e, '(thread_update) start thread false, why?')
+    
 
 def menu_settings_click():
 	print('settings')
@@ -98,4 +113,4 @@ def listbox_versions_click(event):
         frame.button_work['text'] = 'Play' if check_version(index, False) else 'Download'
     except Exception as e:
         frame.button_work['state'] = ['disabled']
-        print(e, ',version click, its normal work')
+        print(e, '(version click) its normal work')
