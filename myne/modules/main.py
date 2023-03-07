@@ -4,7 +4,8 @@ from threading import Thread
 from config import *
 # index - the selected line with names in listbox
 
-def on_start():
+
+def on_start(): #TODO refactor this pls to try/catch
     if update_database()!=True:
         print(update_database())
     else:
@@ -65,7 +66,6 @@ def read_url(index):
         print(e, '(read url)')
 
 
-
 def check_version(index, state):
     if os.path.exists('myne\\minecraft') == False:
         os.mkdir('myne\\minecraft')
@@ -73,7 +73,7 @@ def check_version(index, state):
         return True
     else: 
         return False
-    
+
 
 def update_version():
     frame.progressbar.place(x=x_r, y=235, width=145, height=19)
@@ -101,7 +101,7 @@ def button_work_click():
         thread_update.start()
     except Exception as e:
         print(e, '(thread_update) start thread false, why?')
-    
+
 
 def menu_settings_click():
 	print('settings')
