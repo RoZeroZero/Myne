@@ -67,9 +67,9 @@ def read_url(index):
 
 
 def check_version(index, state):
-    if os.path.exists('myne\\minecraft') == False:
-        os.mkdir('myne\\minecraft')
-    if os.path.exists('myne\\minecraft\\' + names[index][0]) and state==False:
+    if os.path.exists(str(os.getenv('APPDATA')) + '\\.minecraft\\versions') == False:
+        os.mkdir(str(os.getenv('APPDATA')) + '\\.minecraft\\versions')
+    if os.path.exists(str(os.getenv('APPDATA')) + '\\.minecraft\\versions' + names[index][0]) and state==False:
         return True
     else: 
         return False
@@ -90,9 +90,9 @@ def update_version():
                 f.write(data)
                 frame.progressbar['value'] += 1
             frame.progressbar.place_forget()
-    with ZipFile('myne\\minecraft\\' + names[index][0] + '.zip', 'r') as z:
-        z.extractall(path='myne\\minecraft')
-    os.remove('myne\\minecraft\\' + names[index][0] + '.zip') #TODO export to config current path
+    with ZipFile(str(os.getenv('APPDATA')) + '\\.minecraft\\versions' + names[index][0] + '.zip', 'r') as z:
+        z.extractall(path=str(os.getenv('APPDATA')) + '\\.minecraft\\versions')
+    os.remove(str(os.getenv('APPDATA')) + '\\.minecraft\\versions' + names[index][0] + '.zip') #TODO export to config current path
 
 
 def button_work_click():
@@ -100,7 +100,7 @@ def button_work_click():
     try:
         thread_update.start()
     except Exception as e:
-        print(e, '(thread_update) start thread false, why?')
+        print(e, '(thread_update) start thread false')
 
 
 def menu_settings_click():
@@ -113,7 +113,7 @@ def listbox_versions_click(event):
     try:
         index = frame.listbox_versions.curselection()[0]
         read_description(index)
-        frame.button_work['text'] = 'Play' if check_version(index, False) else 'Download'
+        frame.button_work['text'] = 'Update?' if check_version(index, False) else 'Download'
     except Exception as e:
         frame.button_work['state'] = ['disabled']
         print(e, '(version click) its normal work')
