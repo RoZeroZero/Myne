@@ -2,7 +2,7 @@ from zipfile import ZipFile
 import frame, os, requests, sqlite3
 from threading import Thread
 from config import *
-# index - the selected line with names in listbox
+
 
 
 def on_start(): #TODO refactor this pls to try/catch
