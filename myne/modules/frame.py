@@ -22,9 +22,6 @@ label_description.place(x=x_r, y=5)
 label_nickname = Label(ui, text='Nickname', font=(font, 10))
 label_nickname.place(x=x_r, y=185)
 
-label_password = Label(ui, text='Password', font=(font, 10))
-label_password.place(x=x_rd, y=185)
-
 listbox_versions = Listbox(font=(font, 10))
 listbox_versions.place(x=x_l, y=25, height=230, width=200)
 listbox_versions.bind('<<ListboxSelect>>', listbox_versions_click)
@@ -34,10 +31,6 @@ text_description.place(x=x_r, y=25, height=150, width=265)
 
 entry_nickname = Entry()
 entry_nickname.place(x=x_r, y=205)
-
-entry_password = Entry()
-entry_password.place(x=x_rd, y=205, width=100)
-entry_password.insert(0, 'WIP')
 
 entry_path = Entry(font=(font, 8))
 entry_path.place(x=x_r, y=235, width=145, height=19)
