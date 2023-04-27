@@ -78,7 +78,7 @@ def check_version(index, state):
 def update_version():
     frame.progressbar.place(x=x_r, y=235, width=145, height=19)
     index = frame.listbox_versions.curselection()[0]
-    with open(str(os.getenv('APPDATA')) + '\\.minecraft\\versions\\' + names[index][0] + '.zip', 'wb') as f:
+    with open(v_path + names[index][0] + '.zip', 'wb') as f:
         response = requests.get(f'https://www.dropbox.com/s/{read_url(index)}/{names[index][0]}.zip?dl=1', stream=True)
         total_length = response.headers.get('content-length')
         if total_length is None:
@@ -90,9 +90,9 @@ def update_version():
                 f.write(data)
                 frame.progressbar['value'] += 1
             frame.progressbar.place_forget()
-    with ZipFile(str(os.getenv('APPDATA')) + '\\.minecraft\\versions\\' + names[index][0] + '.zip', 'r') as z:
-        z.extractall(path=str(os.getenv('APPDATA')) + '\\.minecraft\\versions')
-    os.remove(str(os.getenv('APPDATA')) + '\\.minecraft\\versions\\' + names[index][0] + '.zip') #TODO export to config current path
+    with ZipFile(v_path + names[index][0] + '.zip', 'r') as z:
+        z.extractall(path=v_path)
+    os.remove(v_path + names[index][0] + '.zip') #TODO export to config current path
 
 
 def button_work_click():

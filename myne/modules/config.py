@@ -2,6 +2,7 @@ import os
 
 
 v_url = 'https://raw.githubusercontent.com/RoZeroZero/Myne/main/versions.db' # version (name, version, description, short url) url
+v_path = str(os.getenv('APPDATA')) + '\\.minecraft\\versions\\' # version
 db = 'versions.db'
 minecraft_path = os.path.abspath(os.curdir)
 
