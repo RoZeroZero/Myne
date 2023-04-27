@@ -9,7 +9,6 @@ ui=Tk()
 ui.title('Myne')
 ui.resizable(False, False)
 ui.geometry(xy)
-ui.iconbitmap(default=ico)
 ui.attributes('-fullscreen', False)
 
 

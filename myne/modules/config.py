@@ -13,6 +13,4 @@ x_r = 215
 x_rd = 375
 xy = '495x270' #+50x0
 
-ico = 'assets/myne.ico'
-
 font='Segoe UI'
