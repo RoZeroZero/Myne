@@ -104,7 +104,8 @@ def button_work_click():
 
 
 def menu_settings_click():
-	print('settings')
+    os.startfile(str(os.getenv('APPDATA')) + '\\.minecraft\\TLauncher.exe')
+    print('launcher')
 
 
 def listbox_versions_click(event):

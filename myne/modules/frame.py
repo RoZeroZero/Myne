@@ -33,7 +33,7 @@ entry_path.insert(0, minecraft_path)
 progressbar = ttk.Progressbar(orient="horizontal")
 
 menu_settings = Menu()
-menu_settings.add_command(label='Settings', command=menu_settings_click)
+menu_settings.add_command(label='TLauncher', command=menu_settings_click)
 
 button_work = Button(ui, text='Choose', font=(font, 8), state=["disabled"], command=button_work_click) # type: ignore
 button_work.place(x=x_rd, y=235, height=19, width=100)
